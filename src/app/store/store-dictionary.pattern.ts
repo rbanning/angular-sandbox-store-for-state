@@ -1,4 +1,4 @@
-import { Nullable } from './../types/nullable';
+import { Nullable } from '../common';
 import { StoreBase } from './store-base.model';
 
 export class StoreDictionary<T>

@@ -15,7 +15,7 @@ export type FilterFunction<T> = (item: T, pattern: Nullable<string>) => boolean;
  * IN = format of the incoming collection of items (e.g. array)
  * OUT = format of the outputted collection (defaults to just the collection)
  */
-export class StoreBase<T, IN, OUT> {
+export abstract class StoreBase<T, IN, OUT> {
 
   protected _statusSubject = new BehaviorSubject<StoreStatus>('pending');
   protected _errorSubject = new BehaviorSubject<any>(null);
@@ -28,8 +28,8 @@ export class StoreBase<T, IN, OUT> {
   filterFn: FilterFunction<T> = () => { return true};
 
   constructor(
-    protected key: keyof T,
-    initial: Nullable<IN> = null
+    protected key: keyof T,             //the unique key (field name) of the item T 
+    initial: Nullable<IN> = null        //the initial value of the store (defaults to null)
   ) {
     this.load(initial); 
   }
@@ -93,8 +93,9 @@ export class StoreBase<T, IN, OUT> {
     this.setError(error); //important - set the error before changing the status
     this._statusSubject.next(value);
   }
+  //update status based on the value of _store
   protected updateStatus() {
-    this.status = !!this._store ? 'ready' : 'pending';
+    this.setStatus(!!this._store ? 'ready' : 'pending');
   }  
 
   // **** Create StoreState object **** //
@@ -159,12 +160,12 @@ export class StoreBase<T, IN, OUT> {
   }
 
   load(data: Nullable<IN>): void {
-    this._store = this.storeReducerIn(data);
-    this.publish()
+    this._store = this.storeReducerIn(data);    //convert (reduce) the raw data before putting it in the _store
+    this.publish()                              //publish the data via the observable
   }
 
   protected publish() {
-    this.updateStatus();
+    this.updateStatus();  //resets the status and removes errors
     this._subject.next(this.storeReducerOut(this._store));
   }
 
