@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* site-wide styles */
+html, body {
+  font-size: 20px;
+  @apply text-neutral-700;
+}
+h1 { @apply text-4xl font-light text-primary-800; }
+h2 { @apply text-2xl font-medium text-primary-500; }
+h3 { @apply text-xl font-semibold uppercase text-accent-500; }
+h1, h2, h3 { @apply mb-4; }
+
+p { @apply mb-4; }
+
+.page-container {
+  @apply
+   bg-primary-500/50;
+}
+.section {
+  @apply px-1 mx-auto w-full max-w-lg;
+}
