@@ -1,0 +1,10 @@
+<a [routerLink]="item.route" class="block p-2 border-2 border-neutral-50 rounded shadow">
+  <div class="card-header flex items-center gap-2">
+    <img [src]="item.icon" [alt]="item.key" class="aspect-square w-8 sepia hover:sepia-0 transition-all" />
+    <span class="text-lg text-primary-500">{{item.title}}</span>
+  </div>
+  <div class="card-description" *ngIf="details">
+    <span>{{item.description}}</span>
+  </div>
+</a>
+

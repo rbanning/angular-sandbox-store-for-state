@@ -78,7 +78,7 @@ export const parsers = {
     return this.toNumber(obj, defaultValue); 
   },
 
-  toString (obj: unknown, defaultValue: Nullable<string>): Nullable<string> {
+  toString (obj: unknown, defaultValue: Nullable<string> = null): Nullable<string> {
     if (primitive.isNotNullish(obj)) {
       return `${obj}`;
     }
@@ -86,7 +86,7 @@ export const parsers = {
     //else
     return defaultValue;
   },
-  toStringStrict (obj: unknown, defaultValue: Nullable<string>): Nullable<string> {
+  toStringStrict (obj: unknown, defaultValue: Nullable<string> = null): Nullable<string> {
     if (primitive.isString(obj)) {
       return obj as string;
     }

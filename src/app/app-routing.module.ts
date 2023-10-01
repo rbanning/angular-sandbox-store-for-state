@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ExamplesComponent, HomeComponent, NotFoundComponent, ProductListComponent } from './pages';
+import { HomeComponent, NotFoundComponent } from './pages';
 
 const routes: Routes = [
   { 
@@ -14,14 +14,8 @@ const routes: Routes = [
   },
   { 
     path: 'examples',
-    component: ExamplesComponent
+    loadChildren: () => import('./pages/examples/examples.module').then(m => m.ExamplesModule)
   },
-
-  { 
-    path: 'products',
-    component: ProductListComponent
-  },
-
 
   // 404
   { 

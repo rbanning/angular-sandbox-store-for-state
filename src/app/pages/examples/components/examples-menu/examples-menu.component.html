@@ -1,0 +1,6 @@
+<div class="flex flex-wrap gap-8" *ngIf="type === 'full'">
+  <app-example-card 
+    *ngFor="let item of items" 
+    [item]="item" 
+    [details]="true"></app-example-card>
+</div>
