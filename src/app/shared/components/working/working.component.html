@@ -1,5 +1,6 @@
 <div
   *ngIf="show || (show$ | async)"
+  (dblclick)="clear()"
   class="fixed top-0 left-0 bottom-0 right-0 w-full h-full bg-neutral-500/50 flex justify-center items-center">
 
   <div class="flex items-center gap-1 text-neutral-500 text-3xl font-semibold">
@@ -9,5 +10,5 @@
     </svg>
     <span *ngIf="label">{{label}}</span>
   </div>
-  
+
 </div>
