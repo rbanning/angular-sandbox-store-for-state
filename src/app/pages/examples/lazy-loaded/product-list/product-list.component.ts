@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Nullable } from '@app/common';
 import { ProductService } from '@app/core/services';
 import { IProduct } from '@app/models';
+import { StoreStatus } from '@app/store';
 
 @Component({
   selector: 'app-product-list',
@@ -12,7 +13,7 @@ import { IProduct } from '@app/models';
   ]
 })
 export class ProductListComponent {
-  status$;
+  status$: Observable<StoreStatus>;
   products$: Observable<Nullable<IProduct[]>>;
 
   constructor(protected service: ProductService) {

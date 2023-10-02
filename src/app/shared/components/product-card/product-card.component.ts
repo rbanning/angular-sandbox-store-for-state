@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Nullable } from '@app/common';
 import { IProduct } from '@app/models';
 
@@ -14,4 +14,13 @@ export class ProductCardComponent {
 
   @Input()
   detailed: boolean = false;
+
+  @Output()
+  addToCart = new EventEmitter<IProduct>();
+
+  add() {
+    if (this.item) {
+      this.addToCart.emit(this.item);
+    }
+  }
 }

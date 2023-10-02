@@ -1,8 +1,7 @@
 <h2 class="mb-0">Product List</h2>
 <div *ngIf="{status: status$ | async, products: products$ | async} as obs">
-  <h3 class="text-secondary-200 font-mono text-sm" *ngIf="obs.status !== 'ready'">{{obs.status}}</h3>
-  <div *ngIf="obs.status === 'ready'">
-    <h3 class="text-accent-600 font-mono">FOUND: {{obs.products?.length ?? 0}}</h3>
+  <h3 class="text-secondary-500 font-mono text-sm" *ngIf="obs.status !== 'ready'">{{obs.status}}</h3>
+  <div *ngIf="obs.status === 'ready'" class="my-8">
     <app-product-grid [items]="obs.products ?? []"></app-product-grid>
   </div>
 </div>

@@ -28,6 +28,17 @@ export class ProductService {
     return this._store.getStoreState().data$;
   }
 
+  find(id: string, forceRefresh: boolean = false): Observable<Nullable<IProduct>> {
+    //be sure the data is loaded first
+    return this.load(forceRefresh)
+      .pipe(
+        map(_ => {
+          //and now return the requested item from the store
+          return this._store.find(id);
+        })
+      );
+  }
+
 
   protected loadFromRemote(): Observable<Nullable<IProduct[]>> {
     return this.remoteApi.fetch('products')
