@@ -16,6 +16,9 @@ export class ProductService {
     protected remoteApi: RemoteApiService
   ) { }
 
+  getState$() {
+    return this._store.getStatus$();
+  }
 
   load(forceRefresh: boolean = false): Observable<Nullable<IProduct[]>> {
     if (this._store.status !== 'ready' || forceRefresh) {

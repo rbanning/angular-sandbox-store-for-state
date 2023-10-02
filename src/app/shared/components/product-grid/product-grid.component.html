@@ -1,0 +1,13 @@
+<div
+  *ngIf="items"
+  class=" 
+    grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4
+    items-stretch gap-4 md:gap-6 lg:gap-8">
+
+  <app-product-card 
+    *ngFor="let item of items"
+    [item]="item" 
+    [detailed]="false"></app-product-card>
+
+</div>
+

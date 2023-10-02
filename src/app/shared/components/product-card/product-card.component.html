@@ -1,0 +1,37 @@
+<div
+  *ngIf="item"
+  class="border-2 border-neutral-300 shadow py-2 px-8 text-sm" 
+  [title]="item.title"
+  [attr.data-id]="item.id">
+
+  <img [src]="item.image" [alt]="'photo for ' + item.title" />
+  <div class="mt-4">
+    <div class="font-semibold text-primary-800 mb-2 max-h-10 overflow-hidden text-clip">{{item.title}}</div>
+    <div class="" *ngIf="detailed">
+      {{item.description}}
+    </div>
+    <div class="my-2">
+      <button class="flex justify-center items-center gap-2 
+        w-full py-1 
+        transition-colors
+        bg-accent-700 text-neutral-100
+        hover:bg-accent-800 hover:text-neutral-50" *ngIf="detailed">
+        <img src="/assets/add-to-cart-white.png" alt="Add to Cart" 
+          class="aspect-square w-6"/>
+        <span>${{item.price}}</span>
+      </button>
+
+      <div class="mb-1 text-right" *ngIf="!detailed">${{item.price}}</div>
+      <a [routerLink]="[item.id]" 
+        class="flex justify-center items-center gap-2 
+        w-full py-1 font-semibold
+        transition-colors
+        bg-accent-100 text-neutral-500
+        hover:bg-accent-200 hover:text-neutral-800" *ngIf="!detailed">
+        <img src="/assets/learn-more-black.png" alt="Add to Cart"  
+        class="aspect-square w-6"/>
+        <span>Details</span>
+      </a>
+    </div>
+  </div>
+</div>

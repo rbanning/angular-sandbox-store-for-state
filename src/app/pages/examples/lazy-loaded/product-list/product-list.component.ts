@@ -12,9 +12,11 @@ import { IProduct } from '@app/models';
   ]
 })
 export class ProductListComponent {
+  status$;
   products$: Observable<Nullable<IProduct[]>>;
 
   constructor(protected service: ProductService) {
+    this.status$ = service.getState$();
     this.products$ = service.load();
   }
 }
