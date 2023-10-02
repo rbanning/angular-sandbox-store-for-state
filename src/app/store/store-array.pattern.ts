@@ -1,6 +1,14 @@
 import { Nullable } from '../common';
 import { StoreBase } from './store-base.model';
 
+/**
+ * Most basic pattern for storing a collection of items.
+ * The data come IN as an array of items
+ * and the data comes OUT as an array of items.
+ * 
+ * Generally, there is not much to the reducers (IN or OUT)
+ */
+
 export class StoreArray<T> extends StoreBase<T, T[], T[]> {
   constructor(key: keyof T, initial: Nullable<T[]> = null) {
     super(

@@ -7,6 +7,8 @@ import { Nullable, parsers } from '../common';
 export type StoreStatus = 'pending' | 'ready' | 'working' | 'error';
 export type StoreStatusWithError = [StoreStatus, Nullable<any>];
 
+export type KeyOfItem = string | number;
+
 export type FilterFunction<T> = (item: T, pattern: Nullable<string>) => boolean;
 
 /** Generic:
