@@ -20,4 +20,8 @@ export class ProductListComponent {
     this.status$ = service.getState$();
     this.products$ = service.load();
   }
+
+  refresh() {
+    this.products$ = this.service.load(true);
+  }
 }

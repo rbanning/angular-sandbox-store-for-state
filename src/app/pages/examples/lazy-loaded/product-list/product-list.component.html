@@ -1,4 +1,11 @@
-<h2 class="mb-0">Product List</h2>
+<div class="flex">
+  <h2 class="mb-0 flex-1">Product List</h2>
+  <button
+    (click)="refresh()" 
+    class="bg-primary-200 text-primary-900 py-2 px-4 shadow">
+    Refresh Data
+  </button>
+</div>
 <app-example-description>
   The products are loaded from the remote api the first time you 
   come to this page.  After that, the app uses the cached product list 
