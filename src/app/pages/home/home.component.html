@@ -1,2 +1,20 @@
 <h1>Home</h1>
-<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Commodi, eveniet! Cupiditate quis magnam, nemo dolor dicta odit ut deleniti officia beatae ex. Dignissimos laborum amet tempora. Exercitationem voluptatem esse voluptates.</p>
+
+<div class="text-lg max-w-md">
+
+  <p>
+    Welcome.  This is a <code>sandbox</code> app used to 
+    test and demonstrate various features of our <code>store</code> class.
+    <code>StoreBase</code> provides a way of storing data, usually retrieved from 
+    a remote api, and acting on that data (find, add, replace, delete).  The class 
+    also maintains the state of the store (pending, working, ready, error).
+  </p>
+
+  <p>
+    In this app, you will find <a [routerLink]="['/examples']">examples</a> of 
+    various use-cases of stores derived from <code>StoreBase</code>.  The data for 
+    the examples comes from various remote apis and a delay is added to the fetch to 
+    exaggerate the time it takes to make a remote api call.  This makes it more clear 
+    when the app is pulling data from a remote source or using cached data. 
+  </p>
+</div>

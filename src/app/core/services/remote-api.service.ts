@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, finalize, tap, throwError } from 'rxjs';
+import { Observable, catchError, delay, finalize, tap, throwError } from 'rxjs';
 import { parsers } from "@app/common";
 import { WorkingService } from "./working.service";
 
@@ -10,6 +10,7 @@ export type API_ENDPOINT = 'products' | 'users';
 })
 export class RemoteApiService {
   protected readonly BASE_URL = 'https://fakestoreapi.com/';
+  protected readonly DELAY = 2000;
 
   constructor(
     protected http: HttpClient,
@@ -21,6 +22,7 @@ export class RemoteApiService {
     this.setWorking(true);
     return this.http.get(url)
       .pipe(
+        delay(this.DELAY),
         tap((result) => {
           console.log("RemoteApiService - fetch", {what, result});
         }),
