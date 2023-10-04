@@ -12,16 +12,16 @@ const examplesRepo: ExamplesMenuCollection = [
   {
     key: 'product-list',
     title: "Products with Categories",
-    description: "Array of products with popup category descriptions from a Dictionary store",
+    description: "Array of products with popup category descriptions from a Dictionary Store",
     icon: "./assets/categories.png",
     route: ['product-list-categories']
   },
   {
-    key: 'user-dictionary',
-    title: "User Dictionary",
-    description: "Dictionary of users initially loaded from remote API and cached using Dictionary Store",
+    key: 'user-search',
+    title: "User Search",
+    description: "Array of users is stored in an Array Store and uses a custom filter to perform a search",
     icon: "./assets/users.png",
-    route: ['user-dictionary']
+    route: ['user-search']
   },
 ]
 

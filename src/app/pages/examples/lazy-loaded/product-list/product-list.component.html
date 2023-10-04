@@ -7,10 +7,11 @@
   </button>
 </div>
 <app-example-description>
-  The products are loaded from the remote api the first time you 
+  In this demo, the products are loaded from the remote api the first time you 
   come to this page.  After that, the app uses the cached product list 
   in the store <code>StoreArray</code>.  Try viewing any of the products 
-  and then return to this page.  
+  and then return to this page.  You should notice that the app is much
+  more responsive (faster).
 </app-example-description>
 <div *ngIf="{status: status$ | async, products: products$ | async} as obs">
   <h3 class="text-secondary-500 font-mono text-sm" *ngIf="obs.status !== 'ready'">{{obs.status}}</h3>

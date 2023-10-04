@@ -7,10 +7,15 @@
   </button>
 </div>
 <app-example-description>
-  The products are loaded from the remote api the first time you 
-  come to this page.  After that, the app uses the cached product list 
-  in the store <code>StoreArray</code>.  Try viewing any of the products 
-  and then return to this page.  
+  In this demo, product categories are included in the display.  
+  If you click on a category, the app displays a modal with information 
+  about the category.  This information is loaded 
+  from a remote api the first time you 
+  come to this page.  The app uses the cached category dictionary 
+  in the store <code>StoreDictionary</code> to make category lookup 
+  instantaneous (direct lookup).  Try viewing any of the products 
+  and then return to this page.  You will notice that both the 
+  products and the categories remain loaded. 
 </app-example-description>
 <div *ngIf="{status: status$ | async, products: products$ | async} as obs">
   <h3 class="text-secondary-500 font-mono text-sm" *ngIf="obs.status !== 'ready'">{{obs.status}}</h3>
@@ -27,7 +32,7 @@
   <div class="inner max-w-md ">
     <div class="flex items-center">
       <img [src]="category.icon" alt="Category Icon" class="aspect-square w-8" />
-      <div class="text-lg text-primary-900">{{category.title}}</div>
+      <div class="text-xl font-semibold text-primary-900">{{category.title}}</div>
     </div>
     <p>{{category.description}}</p>
     <div
