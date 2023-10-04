@@ -2,10 +2,10 @@ import { IsNullish } from "./types";
 
 export type TypeOfName = 'string' | 'number' | 'bigint' | 'boolean' | 'symbol' | 'object' | 'function' | 'undefined';
 
-const isNullish = (obj: unknown) => obj === null || obj === undefined || typeof(obj) === 'undefined';
+const isNullish = (obj: unknown): obj is IsNullish => obj === null || obj === undefined || typeof(obj) === 'undefined';
 
 export const primitive = {
-  isNotNullish: (obj: unknown) => !isNullish(obj),
+  isNotNullish: <T>(obj: unknown): obj is T => !isNullish(obj),
   isNullish: (obj: unknown): obj is IsNullish => isNullish(obj),
   
   isNumber: (obj: unknown): obj is number => Number.isFinite(obj),
