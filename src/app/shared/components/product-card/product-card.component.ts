@@ -15,6 +15,12 @@ export class ProductCardComponent {
   @Input()
   detailed: boolean = false;
 
+  @Input()
+  categories: Nullable<boolean>;
+
+  @Output()
+  categoryClick = new EventEmitter<string>();
+
   @Output()
   addToCart = new EventEmitter<IProduct>();
 
@@ -22,5 +28,9 @@ export class ProductCardComponent {
     if (this.item) {
       this.addToCart.emit(this.item);
     }
+  }
+
+  handleCategoryClick(category: string) {
+    this.categoryClick.emit(category);
   }
 }

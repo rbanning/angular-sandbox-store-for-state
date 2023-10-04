@@ -31,7 +31,6 @@ export class WorkingService {
   setWorking(key: string, value: boolean) {
     this._register[key] = value;
     this._subject.next(this.isWorking);
-    console.log("Working Service - set ", {key, value, current: this.isWorking})
   }
 
   clear() {

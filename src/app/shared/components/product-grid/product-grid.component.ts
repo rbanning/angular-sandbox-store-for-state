@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Nullable } from '@app/common';
 import { IProduct } from '@app/models';
 
@@ -11,5 +11,15 @@ import { IProduct } from '@app/models';
 export class ProductGridComponent {
   @Input()
   items: Nullable<IProduct[]>;
+
+  @Input()
+  categories: Nullable<boolean>;
+
+  @Output()
+  categoryClick = new EventEmitter<string>();
+
+  handleCategoryClick(category: string) {
+    this.categoryClick.emit(category);
+  }
 
 }

@@ -36,8 +36,7 @@ export class StoreDictionary<T>
   }
 
 
-
-  constructor(key: keyof T, initial: T[] = []) {
+  constructor(key: keyof T, initial: Nullable<T[]> = null /* see note on StoreBase */) {
     super(key, initial);
   }
 

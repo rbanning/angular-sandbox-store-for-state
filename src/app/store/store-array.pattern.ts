@@ -10,7 +10,8 @@ import { StoreBase } from './store-base.model';
  */
 
 export class StoreArray<T> extends StoreBase<T, T[], T[]> {
-  constructor(key: keyof T, initial: Nullable<T[]> = null) {
+
+  constructor(key: keyof T, initial: Nullable<T[]> = null /* see note on StoreBase */) {
     super(
       key,
       initial

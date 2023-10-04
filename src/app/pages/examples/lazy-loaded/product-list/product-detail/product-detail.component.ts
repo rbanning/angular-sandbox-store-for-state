@@ -24,7 +24,7 @@ export class ProductDetailComponent {
   constructor(
     protected service: ProductService,
     protected location: Location,
-    route: ActivatedRoute
+    route: ActivatedRoute,
   ) {
     this.status$ = this.service.getState$();
     this.subscription.push(
@@ -38,6 +38,10 @@ export class ProductDetailComponent {
 
   addToCard(product:IProduct) {
     console.log("todo: implement adding this product to a cart", {product});
+    this.back();
+  }
+
+  back() {
     this.location.back();
   }
 }

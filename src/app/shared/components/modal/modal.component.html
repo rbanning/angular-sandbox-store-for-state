@@ -1,0 +1,9 @@
+<div class="border-4 border-neutral-600 bg-neutral-50 shadow-lg">
+  <div *ngIf="heading" 
+    class="heading
+      text-center p-1 
+      bg-neutral-300 text-neutral-800 font-semibold">{{heading}}</div>
+  <div class="body p-4">
+    <ng-content></ng-content>
+  </div>
+</div>

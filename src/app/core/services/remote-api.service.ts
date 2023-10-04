@@ -19,7 +19,7 @@ export class RemoteApiService {
 
   fetch(what: API_ENDPOINT): Observable<any> {
     const url = this.BASE_URL + what;
-    this.setWorking(true);
+    this.setWorking(what, true);
     return this.http.get(url)
       .pipe(
         delay(this.DELAY),
@@ -31,8 +31,7 @@ export class RemoteApiService {
           return throwError(() => this.buildErrorMessage(err));
         }),
         finalize(() => {
-          this.setWorking(false);
-          console.log("RemoteApiService - fetch - DONE", {working: this.workingService.isWorking})
+          this.setWorking(what, false);
         })
       )
   }
@@ -43,7 +42,7 @@ export class RemoteApiService {
   }
 
 
-  protected setWorking(state: boolean) {
-    this.workingService.setWorking('RemoteApiService', state);
+  protected setWorking(what: API_ENDPOINT, state: boolean) {
+    this.workingService.setWorking(`RemoteApiService-${what}`, state);
   }
 }

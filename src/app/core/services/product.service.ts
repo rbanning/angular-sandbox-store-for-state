@@ -4,7 +4,7 @@ import { Observable, map, tap, catchError, of } from 'rxjs';
 import { IProduct, Product } from '@app/models';
 import { StoreArray } from '@app/store';
 import { RemoteApiService } from './remote-api.service';
-import { Nullable, primitive } from '@app/common';
+import { Nullable, primitive, strHelp } from '@app/common';
 
 @Injectable({
   providedIn: 'root'
@@ -51,8 +51,14 @@ export class ProductService {
           console.warn("Unknown result returned from remote api (expected an array)", {result});
           return null;
         }),
-        tap((products: IProduct[]) => {
-          this._store.load(products);
+        tap((products: Nullable<IProduct[]>) => {
+          if (products) {
+            //sort
+            products.sort((a,b) => strHelp.stringCompare(a.title,b.title)); //sorting by title (asc)
+  
+            //store
+            this._store.load(products);
+          }
         }),
         catchError((err) => {
           this._store.setStatus('error', err);

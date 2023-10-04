@@ -10,7 +10,11 @@ const routes: Routes = [
       {
         path: 'product-list',
         loadChildren: () => import('./lazy-loaded/product-list/product-list.module').then(m => m.ProductListModule)
-      }
+      },
+      {
+        path: 'product-list-categories',
+        loadChildren: () => import('./lazy-loaded/product-list-categories/product-list-categories.module').then(m => m.ProductListCategoriesModule)
+      },
     ]
   }
 

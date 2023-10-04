@@ -29,6 +29,8 @@ export abstract class StoreBase<T, IN, OUT> {
   protected _filterSubject = new BehaviorSubject<Nullable<string>>(null);
   filterFn: FilterFunction<T> = () => { return true};
 
+  //note: if initial is Nullable, then the state will remain 'pending'
+  //      if it is nonNullable, then the state will be set to 'ready'
   constructor(
     protected key: keyof T,             //the unique key (field name) of the item T 
     initial: Nullable<IN> = null        //the initial value of the store (defaults to null)

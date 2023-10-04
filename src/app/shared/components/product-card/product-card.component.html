@@ -7,6 +7,13 @@
   <img [src]="item.image" [alt]="'photo for ' + item.title" />
   <div class="mt-4">
     <div class="font-semibold text-primary-800 mb-2 max-h-10 overflow-hidden text-clip">{{item.title}}</div>
+    <div class="mb-2" *ngIf="categories && item.category">
+      <button
+        (click)="handleCategoryClick(item.category)" 
+        class="py-1 px-2 transition-colors
+          text-sm bg-neutral-100
+          hover:bg-neutral-300 hover:text-neutral-900">{{item.category}}</button>
+    </div>
     <div class="" *ngIf="detailed">
       {{item.description}}
     </div>
@@ -24,7 +31,7 @@
       </button>
 
       <div class="mb-1 text-right" *ngIf="!detailed">${{item.price}}</div>
-      <a [routerLink]="[item.id]" 
+      <a [routerLink]="['/examples', 'product-list', item.id]" 
         class="flex justify-center items-center gap-2 
         w-full py-1 font-semibold
         transition-colors
