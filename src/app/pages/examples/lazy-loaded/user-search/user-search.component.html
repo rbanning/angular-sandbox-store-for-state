@@ -1,0 +1,41 @@
+<div class="flex">
+  <h2 class="mb-0 flex-1">User Search</h2>
+  <button
+    (click)="refresh()" 
+    class="bg-primary-200 text-primary-900 py-2 px-4 shadow">
+    Refresh Data
+  </button>
+</div>
+<app-example-description>
+  In this demo, a list of users are loaded from the remote api the first time you 
+  come to this page.  After that, the app uses the cached user list 
+  in the store <code>StoreArray</code> when evaluating your search.  
+  After trying a few searches, visit other examples 
+  and then return to this page.  You should notice that the app is much
+  more responsive (faster).
+</app-example-description>
+<div *ngIf="{status: status$ | async} as obs">
+  <h3 class="text-secondary-500 font-mono text-sm" *ngIf="obs.status !== 'ready'">{{obs.status}}</h3>
+  <div *ngIf="obs.status === 'ready'" class="my-8">
+    <div class="py-2 px-4 
+      flex items-center
+      max-w-sm 
+      border-2 border-neutral-300">
+
+      <input 
+        type="text"
+        #patternInput
+        (keydown)="handleInput($event)"
+        class="flex-1 outline-0 border-0 ring-0 text-lg" />
+      <span class="mx-2 w-2 bg-neutral-100"></span>
+      <button
+        (click)="reset()"
+        [disabled]="!patternInput.value"
+        class="inline-flex justify-center items-center
+          text-2xl border-2 border-neutral-300 rounded-full px-2
+          disabled:opacity-50">
+        <span class="-translate-y-1">&times;</span>
+      </button>
+    </div>
+  </div>
+</div>

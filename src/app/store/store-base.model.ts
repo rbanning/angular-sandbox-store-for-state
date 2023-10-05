@@ -25,10 +25,6 @@ export abstract class StoreBase<T, IN, OUT> {
   protected _store: any;
   protected _subject = new BehaviorSubject<Nullable<OUT>>(null);
 
-  //todo: complete incorporating filtering into the store
-  protected _filterSubject = new BehaviorSubject<Nullable<string>>(null);
-  filterFn: FilterFunction<T> = () => { return true};
-
   //note: if initial is Nullable, then the state will remain 'pending'
   //      if it is nonNullable, then the state will be set to 'ready'
   constructor(
@@ -141,7 +137,7 @@ export abstract class StoreBase<T, IN, OUT> {
     throw new Error('Not Implemented - find()');
   }
 
-  filter(options: any): Observable<Nullable<OUT>> {
+  filter(predicate: (item: T) => boolean): Observable<Nullable<OUT>> {
     console.error('Not Implemented - filter()');
     return of(null);
   }

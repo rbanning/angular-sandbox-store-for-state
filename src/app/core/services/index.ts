@@ -3,6 +3,7 @@ export * from './examples-menu.types';
 
 export * from './product.service';
 export * from './category.service';
+export * from './user.service';
 
 export * from './remote-api.service';
 export * from './working.service';

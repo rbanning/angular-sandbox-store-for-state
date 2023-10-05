@@ -15,6 +15,10 @@ const routes: Routes = [
         path: 'product-list-categories',
         loadChildren: () => import('./lazy-loaded/product-list-categories/product-list-categories.module').then(m => m.ProductListCategoriesModule)
       },
+      {
+        path: 'user-search',
+        loadChildren: () => import('./lazy-loaded/user-search/user-search.module').then(m => m.UserSearchModule)
+      },
     ]
   }
 

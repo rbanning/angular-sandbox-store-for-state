@@ -1,3 +1,5 @@
+import { primitive } from '@app/common';
+import { Observable, filter, map } from 'rxjs';
 import { Nullable } from '../common';
 import { StoreBase } from './store-base.model';
 
@@ -84,6 +86,19 @@ export class StoreArray<T> extends StoreBase<T, T[], T[]> {
   override load(data: T[]) {
     this._store = Array.isArray(data) ? [...data] : data;
     this.publish();
+  }
+
+  override filter(predicate: (item: T) => boolean): Observable<Nullable<T[]>> {
+      return this._subject.asObservable()
+        .pipe(
+          map((data) => {
+            if (primitive.isArray(data)) {
+              return data?.filter(predicate);
+            }
+            //else
+            return data;
+          })
+        )
   }
 }
 
