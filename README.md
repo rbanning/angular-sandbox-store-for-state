@@ -1,5 +1,15 @@
-# AngularSandboxStoreForState
+# Angular Sandbox Store For State
+`angular-sandbox-store-for-state`
 
+## Overview
+
+This **sandbox** app is used to demonstrate various uses of 
+our `StoreBase` class which is used to cache remote data
+as well as perform other actions on the data.
+
+**[Demo](https://hallpass-sandbox-angular-store-demo.netlify.app/)**
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/21ba62b6-43a5-4ede-981e-e166155f3def/deploy-status)](https://app.netlify.com/sites/hallpass-sandbox-angular-store-demo/deploys)
 
 ### Tailwind CSS
 This `sandbox` uses Tailwind CSS to help with styling.  We use Tailwind in most of our projects.  
