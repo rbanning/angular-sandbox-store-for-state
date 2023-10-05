@@ -13,29 +13,48 @@
   After trying a few searches, visit other examples 
   and then return to this page.  You should notice that the app is much
   more responsive (faster).
+
+  <br>
+  <span class="text-sm">Search Hint: try searching for <code>gmail</code></span>
 </app-example-description>
-<div *ngIf="{status: status$ | async} as obs">
+<div *ngIf="{status: status$ | async, users: users$ | async} as obs">
   <h3 class="text-secondary-500 font-mono text-sm" *ngIf="obs.status !== 'ready'">{{obs.status}}</h3>
   <div *ngIf="obs.status === 'ready'" class="my-8">
-    <div class="py-2 px-4 
+    <div class="py-2 px-4
       flex items-center
       max-w-sm 
       border-2 border-neutral-300">
 
       <input 
         type="text"
-        #patternInput
+        [formControl]="ctrl"
         (keydown)="handleInput($event)"
         class="flex-1 outline-0 border-0 ring-0 text-lg" />
-      <span class="mx-2 w-2 bg-neutral-100"></span>
+      <span class="mx-2 w-1 h-6 bg-neutral-100"></span>
+      <button
+        (click)="refreshSearch()"
+        [disabled]="!ctrl.value"
+        class="inline-flex justify-center items-center
+          text-lg border-2 border-neutral-300 p-1 
+          disabled:opacity-30">
+        <span class="">GO</span>
+      </button>
+      <span class="mx-2 w-1 h-6 bg-neutral-100"></span>
       <button
         (click)="reset()"
-        [disabled]="!patternInput.value"
+        [disabled]="!ctrl.value"
         class="inline-flex justify-center items-center
           text-2xl border-2 border-neutral-300 rounded-full px-2
-          disabled:opacity-50">
+          disabled:opacity-30">
         <span class="-translate-y-1">&times;</span>
       </button>
+    </div>
+
+    <div class="my-4" *ngIf="pattern && obs.users">
+      <h3>Results for {{pattern}} ({{obs.users.length}})</h3>
+      <div class="my-4" *ngFor="let item of obs.users">
+        <app-user-card [user]="item"></app-user-card>
+      </div>
     </div>
   </div>
 </div>

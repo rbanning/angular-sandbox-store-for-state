@@ -1,0 +1,35 @@
+<div 
+  *ngIf="user"
+  class="flex gap-4">
+
+  <div class="flex flex-col items-center">
+    <img 
+      src="/assets/user-icon.png" 
+      alt="user icon" 
+      class="aspect-square w-12 p-1 border-2 border-neutral-300" />
+  </div>
+
+  <div class="flex flex-col" *ngIf="user.name">
+    <span class="font-light">{{user.name.firstname}}</span>
+    <span class="font-semibold text-xl">{{user.name.lastname}}</span>  
+  </div>    
+
+  <span class="w-8 h-1"></span>
+
+  <div class="flex flex-col text-sm">
+    <span class="text-xs font-mono text-primary-700">{{user.username}}</span>
+    <span class="font-mono">{{user.email}}</span>
+    <span class="font-mono">{{user.phone}}</span>
+  </div>
+
+  <div class="flex gap-2" *ngIf="user.address">
+    <a [href]="user.address.geolocation | googleMapLink" target="google-map">
+      <img src="/assets/map-pin.png" alt="map pin" class="aspect-square w-4" />
+    </a>
+    <div class="flex flex-col text-sm">
+      <span>{{user.address.number}} {{user.address.street}}</span>
+      <span>{{user.address.city}}, {{user.address.zipcode}}</span>
+    </div>
+  </div>
+</div>
+

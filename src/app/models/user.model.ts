@@ -1,4 +1,4 @@
-import { Nullable, parsers } from "@app/common";
+import { Nullable, parsers, primitive } from "@app/common";
 
 
 export interface IName {
@@ -9,6 +9,12 @@ export interface IName {
 export interface IGeoLocation {
   lat: string;
   long: string;
+}
+
+export const isGeoLocation = (value: unknown): value is IGeoLocation => {
+  return (primitive.isNotNullish(value) 
+    && primitive.isString((value as IGeoLocation).lat) 
+    && primitive.isString((value as IGeoLocation).long));
 }
 
 export interface IAddress {

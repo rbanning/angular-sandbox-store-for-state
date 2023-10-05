@@ -1,4 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Nullable } from '@app/common';
 import { UserService } from '@app/core/services';
 import { IUser } from '@app/models';
@@ -15,6 +16,7 @@ export class UserSearchComponent implements OnDestroy {
   status$: Observable<StoreStatus>;
   users$: Observable<Nullable<IUser[]>>;
 
+  ctrl: FormControl = new FormControl('');
   pattern: Nullable<string>;
 
   protected subscriptions: Subscription[] = [];
@@ -26,6 +28,7 @@ export class UserSearchComponent implements OnDestroy {
     this.subscriptions.push(
       this.service.load().subscribe() //preload
     )
+
   }
 
   ngOnDestroy(): void {
@@ -35,6 +38,7 @@ export class UserSearchComponent implements OnDestroy {
   }
 
   filter(pattern: string) {
+    this.pattern = pattern;
     if (pattern) {
       this.users$ = this.service.filter(pattern);
     }
@@ -42,16 +46,30 @@ export class UserSearchComponent implements OnDestroy {
 
   refresh() {
     this.subscriptions.push(
-      this.service.load(true).subscribe() //preload
+      this.service.load(true).subscribe({
+        next: _ => this.refreshSearch()
+      }) //refresh search after loaded
     )
   }
 
   reset() {
-    this.pattern = null;
+    this.ctrl.setValue('');
+    this.refreshSearch();
   }
 
   handleInput(event: KeyboardEvent) {
-    console.log("handleInput", event);
+    switch (event.code ?? event.key) {
+      case 'Enter':
+        this.refreshSearch();
+        break;
+      case 'Esc':
+        this.reset();
+        break;
+    }
+
+  }
+  refreshSearch() {
+    this.filter(this.ctrl.value);
   }
 
   protected emptyUserList(): Observable<IUser[]> {
